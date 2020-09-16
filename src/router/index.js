@@ -1,28 +1,55 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+import Dashboard from "../views/Dashboard.vue";
+import Preference from "../views/Preference.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home
+    name: "misc",
+    component: Dashboard
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
+    path: "/smd",
+    name: "smd",
+    component: Dashboard
+  },
+  {
+    path: "/cl",
+    name: "cl",
+    component: Dashboard
+  },
+  {
+    path: "/pir",
+    name: "pir",
+    component: Dashboard
+  },
+  {
+    path: "/sos",
+    name: "sos",
+    component: Dashboard
+  },
+  {
+    path: "/wsdcg",
+    name: "wsdcg",
+    component: Dashboard
+  },
+  {
+    path: "/sj",
+    name: "sj",
+    component: Dashboard
+  },
+  {
+    path: "/pref",
+    name: "pref",
+    component: Preference
   }
 ];
 
 const router = new VueRouter({
-  mode: "history",
+  mode: "hash",
   base: process.env.BASE_URL,
   routes
 });
