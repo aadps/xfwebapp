@@ -1,5 +1,5 @@
 module.exports = {
-  API: "http://aadps.net:6001",
+  API: "http://api.xinfuzhineng.com:6000",
   GREEN: "#92D050",
   RED: "#FF0000",
   BLUE: "#0097FB",
