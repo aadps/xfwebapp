@@ -111,7 +111,7 @@ export default {
               continue;
 
             this.$set(this.devices[j], "fullname", this.devices[j].name);
-            if (this.homes[this.devices[j].owner_id])
+            if (this.homes[this.devices[j].owner_id]){
               this.$set(
                 this.devices[j],
                 "fullname",
@@ -119,8 +119,11 @@ export default {
                   "+" +
                   this.devices[j].name
               );
+              this.devices[j].home = this.homes[this.devices[j].owner_id];
+            }
             else setTimeout(this.getRouteDevices, 500);
-            this.routeDevices.push(this.devices[j]);
+            if(this.$route.query.home === this.devices[j].home)
+              this.routeDevices.push(this.devices[j]);
           }
         }
 

@@ -145,7 +145,7 @@ export default {
             axios
               .get(this.$api + "/Home.get?home=" + distinctHid[i])
               .then(response => {
-                this.homes[distinctHid[i]] = response.data.data.result.name;
+                this.homes[response.data.data.result.home_id] = response.data.data.result.name;
               })
               .catch(function(error) {
                 console.log(error);
