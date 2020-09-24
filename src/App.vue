@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer v-model="drawer" color="primary" permanent dark app>
+    <v-navigation-drawer v-model="fullClient" color="primary" dark app>
       <v-list dense nav class="py-0">
         <v-list-item two-line class="miniVariant px-0">
           <v-img src="@/assets/logo.png" contain></v-img>
@@ -37,8 +37,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar app color="primary" dark>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+    <v-app-bar app v-model="fullClient" color="primary" dark>
       <v-toolbar-title>智慧养老</v-toolbar-title>
 
       <v-spacer></v-spacer>
@@ -107,7 +106,6 @@ export default {
   components: {},
 
   data: () => ({
-    drawer: true,
     menuItems: [
       { title: "智能尿裤", link: "/sj", icon: "mdi-hand-wash" },
       { title: "睡眠监测", link: "/smd", icon: "mdi-bed" },
@@ -163,6 +161,13 @@ export default {
 
   beforeDestroy() {
     clearInterval(this.timer);
+  },
+
+  computed: {
+    fullClient() {
+      if(this.$route.query.home)return false;
+      else return true;
+    }
   }
 };
 </script>
