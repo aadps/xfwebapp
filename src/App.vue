@@ -129,19 +129,25 @@ export default {
 
   methods: {
     fetchDevices() {
+      var url = this.$api + "/User.getDevices";
+      if(this.$route.query.userId)
+        url += "?userId=" + this.$route.query.userId + "&homeId=" + this.$route.query.homeid;
+
       axios
-        .get(this.$api + "/User.getDevices")
+        .get(url)
         .then(response => {
           this.devices = response.data.data;
-          var i;
+
+/*          var i;
           var hid = [];
           for (i in this.devices) {
             hid.push(this.devices[i].owner_id);
           }
-          var distinctHid = [...new Set(hid)];
-          for (i in distinctHid) {
+          var distinctHid = [...new Set(hid)];*/
+
+          if(this.$route.query.homeid){
             axios
-              .get(this.$api + "/Home.get?home=" + distinctHid[i])
+              .get(this.$api + "/Home.get?homeId=" + this.$route.query.homeid)
               .then(response => {
                 this.homes[response.data.data.result.home_id] = response.data.data.result.name;
               })
@@ -165,7 +171,7 @@ export default {
 
   computed: {
     fullClient() {
-      if(this.$route.query.home)return false;
+      if(this.$route.query.userId)return false;
       else return true;
     }
   }
