@@ -131,7 +131,7 @@ export default {
     fetchDevices() {
       var url = this.$api + "/User.getDevices";
       if(this.$route.query.userId)
-        url += "?userId=" + this.$route.query.userId + "&homeId=" + this.$route.query.homeid;
+        url += "?userId=" + this.$route.query.userId + "&homeId=" + this.$route.query.homeId;
 
       axios
         .get(url)
@@ -145,9 +145,9 @@ export default {
           }
           var distinctHid = [...new Set(hid)];*/
 
-          if(this.$route.query.homeid){
+          if(this.$route.query.homeId){
             axios
-              .get(this.$api + "/Home.get?homeId=" + this.$route.query.homeid)
+              .get(this.$api + "/Home.get?homeId=" + this.$route.query.homeId)
               .then(response => {
                 this.homes[response.data.data.result.home_id] = response.data.data.result.name;
               })
