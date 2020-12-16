@@ -122,12 +122,7 @@ export default {
               this.devices[j].home = this.homes[this.devices[j].owner_id];
             }
             else setTimeout(this.getRouteDevices, 500);
-            if(this.$route.query.home){
-              if(this.$route.query.home === this.devices[j].home)
-                this.routeDevices.push(this.devices[j]);
-            } else {
-              this.routeDevices.push(this.devices[j]);
-            }
+            this.routeDevices.push(this.devices[j]);
           }
         }
 
