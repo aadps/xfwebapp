@@ -1,7 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
-import { API } from "../config";
+import { API } from "@/config";
+import router from "@/router";
 
 Vue.use(Vuex);
 
@@ -31,8 +32,11 @@ export default new Vuex.Store({
   },
   actions: {
     getPreferences({ commit }) {
+      var url = API + "/User.getPreferences";
+      if(router.currentRoute.query.userId)
+        url += "?userId=" + router.currentRoute.query.userId;
       axios
-        .get(API + "/User.getPreferences")
+        .get(url)
         .then(response => commit("setPref", response.data.data))
         .catch(function(error) {
           // 请求失败处理
@@ -52,8 +56,11 @@ export default new Vuex.Store({
       dispatch("setPreferences");
     },
     setPreferences() {
+      var url = API + "/User.setPreferences";
+      if(router.currentRoute.query.userId)
+        url += "?userId=" + router.currentRoute.query.userId;
       axios
-        .post(API + "/User.setPreferences", {
+        .post(url, {
           pref: JSON.stringify(this.state.pref)
         })
         .then(response => console.log(response))

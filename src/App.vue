@@ -123,7 +123,7 @@ export default {
 
   created() {
     this.fetchDevices();
-    this.timer = setInterval(this.fetchDevices, 30000);
+    this.timer = setInterval(this.fetchDevices, 10000);
     this.$store.dispatch("getPreferences");
   },
 
